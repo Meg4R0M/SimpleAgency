@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Property{% endblock %}
+
+{% block body %}
+    <h1>Property</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ property.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ property.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ property.slug }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ property.description }}</td>
+            </tr>
+            <tr>
+                <th>Surface</th>
+                <td>{{ property.surface }}</td>
+            </tr>
+            <tr>
+                <th>Rooms</th>
+                <td>{{ property.rooms }}</td>
+            </tr>
+            <tr>
+                <th>Bedrooms</th>
+                <td>{{ property.bedrooms }}</td>
+            </tr>
+            <tr>
+                <th>Floor</th>
+                <td>{{ property.floor }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ property.price }}</td>
+            </tr>
+            <tr>
+                <th>Heat</th>
+                <td>{{ property.heat }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ property.city }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ property.address }}</td>
+            </tr>
+            <tr>
+                <th>Postal_code</th>
+                <td>{{ property.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>Sold</th>
+                <td>{{ property.sold ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ property.createdAt ? property.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_property_index') }}">back to list</a>
+
+    <a href="{{ path('admin_property_edit', {'id': property.id}) }}">edit</a>
+
+    {{ include('property/Admin/_delete_form.html.twig') }}
+{% endblock %}

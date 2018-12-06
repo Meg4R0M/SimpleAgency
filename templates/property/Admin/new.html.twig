@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Create new Property' | trans %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{ 'Create new Property' | trans }}</h1>
+
+        {{ include('property/Admin/_form.html.twig') }}
+
+        <a href="{{ path('admin_property_index') }}">{{ 'back to list' | trans }}</a>
+    </div>
+{% endblock %}

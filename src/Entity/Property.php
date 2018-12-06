@@ -11,8 +11,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Property
 {
     const HEAT = [
-        0 => "Electrique",
-        1 => "Gaz"
+        0 => "Electric",
+        1 => "Gas",
+        2 => "Oil"
     ];
 
     /**
