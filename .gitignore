@@ -26,3 +26,12 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+
+###> image files ###
+/public/images/properties/*
+!/public/images/properties/empty.jpeg
+###< image files ###

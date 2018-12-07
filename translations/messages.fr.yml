@@ -36,6 +36,7 @@ Slug: Slug
 Description: Description
 Surface: Surface
 Rooms: Pièces
+rooms: pièces
 Bedrooms: Chambres
 Floor: Etages
 Price: Prix
@@ -47,3 +48,11 @@ Sold: Vendu
 No: Non
 Yes: Oui
 Created_at: Créé le
+Contact the agency: Contacter l'agence
+Specifications: Caractéristiques
+Living space: Surface habitable
+Specificities: Spécificités
+
+Electric: Electrique
+Gas: Gaz
+Oil: Fioul

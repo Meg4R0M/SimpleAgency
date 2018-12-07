@@ -7,6 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PropertyFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -33,6 +34,17 @@ class PropertyFixtures extends Fixture implements OrderedFixtureInterface
                 $randomOption = $faker->numberBetween(1,3);
                 $property->addOption($this->getReference('option'.$randomOption));
             }
+            $getFileFromFaker = fopen($faker->unique()->imageUrl(640, 480, 'city'), 'r');
+            $temp = tempnam(sys_get_temp_dir(), 'TMP_');
+            file_put_contents($temp, stream_get_contents($getFileFromFaker));
+            $file = new UploadedFile(
+                $temp,
+                'Image'.$i,
+                null,
+                null,
+                null,
+                true);
+            $property->setImageFile($file);
 
             $manager->persist($property);
         }

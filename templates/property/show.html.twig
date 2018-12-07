@@ -7,13 +7,19 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-
+          {% if property.filename %}
+            <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}" alt="{{ property.filename }}"
+                 class="card-img-top" style="width: 100%; height: auto;">
+          {% else %}
+            <img src="{{ '/images/properties/empty.jpeg' | imagine_filter('medium') }}" alt="empty"
+                 class="card-img-top" style="width: 100%; height: auto;">
+          {% endif %}
         </div>
         <div class="col-md-4">
           <h1>{{ property.title }}</h1>
-          <h2>{{ property.rooms }} pièces - {{ property.surface }} m²</h2>
+          <h2>{{ property.rooms }} {{ 'rooms' | trans }} - {{ property.surface }} m²</h2>
           <div class="test-primary" style="font-size: 4rem;font-weight: bold;">{{ property.formattedPrice }} €</div>
-          <a href="#" class="btn btn-primary">Contacter l'agence</a>
+          <a href="#" class="btn btn-primary">{{ 'Contact the agency' | trans }}</a>
         </div>
       </div>
     </div>
@@ -27,32 +33,37 @@
 
     <div class="row">
       <div class="col-md-8">
-        <h2>Caractéristiques</h2>
+        <h2>{{ 'Specifications' | trans }}</h2>
         <table class="table table-striped">
           <tr>
-            <td>Surface habitable</td>
+            <td>{{ 'Living space' | trans }}</td>
             <td>{{ property.surface }}</td>
           </tr>
           <tr>
-            <td>Pièces</td>
+            <td>{{ 'Rooms' | trans }}</td>
             <td>{{ property.rooms }}</td>
           </tr>
           <tr>
-            <td>Chambres</td>
+            <td>{{ 'Bedrooms' | trans }}</td>
             <td>{{ property.bedrooms }}</td>
           </tr>
           <tr>
-            <td>Etage</td>
+            <td>{{ 'Floor' | trans }}</td>
             <td>{{ property.floor }}</td>
           </tr>
           <tr>
-            <td>Chauffage</td>
-            <td>{{ property.heatType }}</td>
+            <td>{{ 'Heat' | trans }}</td>
+            <td>{{ property.heatType | trans }}</td>
           </tr>
         </table>
       </div>
       <div class="col-md-4">
-        <h2>Spécificités</h2>
+        <h2>{{ 'Specificities' | trans }}</h2>
+        <ul class="list-group">
+          {% for option in property.options %}
+            <li class="list-group-item">{{ option.name }}</li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
