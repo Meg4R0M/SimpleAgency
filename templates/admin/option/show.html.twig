@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Option' | trans %}
+
+{% block body %}
+  <div class="container mt-4">
+    <h1>{{ 'Option' | trans }}</h1>
+
+    <table class="table table-striped">
+      <tbody>
+      <tr>
+        <th>Id</th>
+        <td>{{ option.id }}</td>
+      </tr>
+      <tr>
+        <th>{{ 'Name' | trans }}</th>
+        <td>{{ option.name }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <a href="{{ path('admin_option_index') }}" class="btn btn-secondary">{{ 'back to list' | trans }}</a>
+
+    <a href="{{ path('admin_option_edit', {'id': option.id}) }}" class="btn btn-secondary">{{ 'edit' | trans }}</a>
+
+    {{ include('admin/option/_delete_form.html.twig') }}
+  </div>
+{% endblock %}

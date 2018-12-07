@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Option index' | trans %}
+
+{% block body %}
+  <div class="container mt-4">
+    <h1>{{ 'Option index' | trans }}</h1>
+
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+    {% endfor %}
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>{{ 'Name' | trans }}</th>
+        <th>{{ 'actions' | trans }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for option in options %}
+        <tr>
+          <td>{{ option.name }}</td>
+          <td>
+            <a href="{{ path('admin_option_show', {'id': option.id}) }}"
+               class="btn btn-secondary">{{ 'show' | trans }}</a>
+            <a href="{{ path('admin_option_edit', {'id': option.id}) }}"
+               class="btn btn-secondary">{{ 'edit' | trans }}</a>
+            {{ include('admin/option/_delete_form.html.twig') }}
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="3">{{ 'no records found' | trans }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <a href="{{ path('admin_option_new') }}" class="btn btn-primary">{{ 'Create new option' | trans }}</a>
+  </div>
+{% endblock %}

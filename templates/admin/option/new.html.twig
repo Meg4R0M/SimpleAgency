@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'New Option' | trans %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{ 'Create new option' | trans }}</h1>
+
+      {{ include('admin/option/_form.html.twig') }}
+
+        <a href="{{ path('admin_option_index') }}" class="btn btn-secondary">{{ 'back to list' | trans }}</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edit Option' | trans %}
+
+{% block body %}
+  <div class="container mt-4">
+    <h1>{{ 'Edit Option' | trans }}</h1>
+
+    {{ include('admin/option/_form.html.twig', {'button_label': 'Update' | trans }) }}
+
+    <a href="{{ path('admin_option_index') }}" class="btn btn-secondary">{{ 'back to list' | trans }}</a>
+
+    {{ include('admin/option/_delete_form.html.twig') }}
+  </div>
+{% endblock %}

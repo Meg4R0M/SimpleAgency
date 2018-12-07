@@ -1,10 +1,19 @@
 Update: Mettre à jour
 Delete: Supprimer
-
+show: voir
+edit: éditer
 back to list: retour à la liste
+Save: Sauvegarder
+Search: Rechercher
 
 Create new Property: Créer un nouveau bien
 Edit Property: Editer le bien
+
+Create new option: Créer une nouvelle option
+Edit Option: Editer l'option
+Option index: Gérer les options
+New Option: Nouvelle option
+Option: Option
 
 Log in!: S'identifier!
 Please sign in: Veuillez vous connecter
@@ -14,3 +23,27 @@ Sign in: Se connecter
 
 Minimal area: Surface minimale
 Max budget: Budget max
+
+Name: Nom
+actions: actions
+no records found: Aucun enregistrement trouvé
+
+Our properties: Nos biens
+See all our properties: Voir tous nos biens
+Property: Propriété
+Title: Titre
+Slug: Slug
+Description: Description
+Surface: Surface
+Rooms: Pièces
+Bedrooms: Chambres
+Floor: Etages
+Price: Prix
+Heat: Chauffage
+City: Ville
+Address: Adresse
+Postal_code: Code postal
+Sold: Vendu
+No: Non
+Yes: Oui
+Created_at: Créé le

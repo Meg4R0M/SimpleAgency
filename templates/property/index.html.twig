@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Nos biens' %}
+{% block title 'Our properties' | trans %}
 
 {% block body %}
   <div class="jumbotron">
@@ -14,8 +14,11 @@
           {{ form_row(form.maxPrice) }}
         </div>
         <div class="col">
+          {{ form_row(form.options) }}
+        </div>
+        <div class="col">
           <div class="form-group">
-            <button class="btn btn-primary">Rechercher</button>
+            <button class="btn btn-primary">{{ 'Search' | trans }}</button>
           </div>
         </div>
       </div>
@@ -24,7 +27,7 @@
   </div>
 
   <div class="container mt-4">
-    <h1>Voir tous nos biens</h1>
+    <h1>{{ 'See all our properties' | trans }}</h1>
 
     <div class="row">
       {% for property in properties %}
