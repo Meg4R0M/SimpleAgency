@@ -5,7 +5,21 @@
 {% block body %}
   <div class="jumbotron">
     <div class="container">
+
+      {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+          {{ message }}
+        </div>
+      {% endfor %}
+
+      {% if not form.vars.valid %}
+        <div class="alert alert-danger">
+          Erreur dans le formulaire, veuillez verifier les informations
+        </div>
+      {% endif %}
+
       <div class="row">
+
         <div class="col-md-8">
           {% if property.filename %}
             <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}" alt="{{ property.filename }}"
@@ -15,12 +29,30 @@
                  class="card-img-top" style="width: 100%; height: auto;">
           {% endif %}
         </div>
+
         <div class="col-md-4">
           <h1>{{ property.title }}</h1>
           <h2>{{ property.rooms }} {{ 'rooms' | trans }} - {{ property.surface }} m²</h2>
           <div class="test-primary" style="font-size: 4rem;font-weight: bold;">{{ property.formattedPrice }} €</div>
           <a href="#" class="btn btn-primary">{{ 'Contact the agency' | trans }}</a>
+          <div id="contactForm" class="mt-4">
+            {{ form_start(form) }}
+            <div class="row">
+              <div class="col">{{ form_row(form.firstname) }}</div>
+              <div class="col">{{ form_row(form.lastname) }}</div>
+            </div>
+            <div class="row">
+              <div class="col">{{ form_row(form.phone) }}</div>
+              <div class="col">{{ form_row(form.email) }}</div>
+            </div>
+            {{ form_rest(form) }}
+            <div class="form-group">
+              <button class="btn btn-primary">Envoyer</button>
+            </div>
+            {{ form_end(form) }}
+          </div>
         </div>
+
       </div>
     </div>
   </div>
