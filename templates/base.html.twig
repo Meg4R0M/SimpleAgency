@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="{{ path('home') }}">Mon Agence</a>
+  <a class="navbar-brand" href="{{ path('home') }}">Simple Agency</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -18,19 +18,40 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link{% if current_menu is defined and current_menu == 'properties' %} active{% endif %}"
-           href="{{ path('property.index') }}">Acheter</a>
+           href="{{ path('property.index') }}">{{ 'Buy' | trans }}</a>
       </li>
     </ul>
     {% if app.user %}
       <ul class="navbar-nav">
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a href="{{ path('admin_property_index') }}" class="nav-link">{{ 'Administration' | trans }}</a>
+          </li>
+        {% endif %}
         <li class="nav-item">
-          <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+          <a href="{{ path('logout') }}" class="nav-link">{{ 'Sign out' | trans }}</a>
+        </li>
+      </ul>
+    {% else %}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="{{ path('login') }}" class="nav-link">{{ 'Log in' | trans }}</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ path('register') }}" class="nav-link">{{ 'Register' | trans }}</a>
         </li>
       </ul>
     {% endif %}
   </div>
 </nav>
 {% block body %}{% endblock %}
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">Simple Agency - {{ "now"|date("Y") }}</span>
+  </div>
+</footer>
+
 <script src="{{ asset('build/runtime.js') }}"></script>
 <script src="{{ asset('build/app.js') }}"></script>
 

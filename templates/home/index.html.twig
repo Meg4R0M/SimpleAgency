@@ -10,6 +10,13 @@
   </div>
 
   <div class="container">
+
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+    {% endfor %}
+
     <h2>Les derniers biens</h2>
     <div class="row flex">
       {% for property in properties %}

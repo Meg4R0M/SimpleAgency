@@ -31,6 +31,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
     {
         $user = new User();
         $user->setUsername("Admin")
+            ->setEmail("admin@symfony.com")
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword($this->passwordEncoder->encodePassword(
                 $user,
@@ -41,6 +42,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
         $user2 = new User();
         $user2->setUsername("User")
+            ->setEmail("user@symfony.com")
             ->setRoles([])
             ->setPassword($this->passwordEncoder->encodePassword(
                 $user2,

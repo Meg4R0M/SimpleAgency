@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Registration' | trans %}
+
+{% block body %}
+  <div class="container mt-4">
+
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Create new account' | trans }}</h1>
+
+    {{ form_start(form) }}
+
+    <div class="row">
+      <div class="col-md-6">
+        {{ form_row(form.username) }}
+      </div>
+      <div class="col-md-6">
+        {{ form_row(form.email) }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        {{ form_row(form.plainPassword.first) }}
+      </div>
+      <div class="col-md-6">
+        {{ form_row(form.plainPassword.second) }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        {{ form_row(form.termsAccepted) }}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ 'Register!' | trans }}</button>
+
+    {{ form_end(form) }}
+
+  </div>
+{% endblock %}

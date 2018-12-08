@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,41 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminPropertyController extends AbstractController
 {
+
+    /**
+     * @var PropertyRepository
+     */
+    private $repository;
+
+    /**
+     * AdminPropertyController constructor.
+     * @param PropertyRepository $repository
+     */
+    public function __construct(PropertyRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @Route("/", name="admin_property_index", methods="GET")
-     * @param PropertyRepository $propertyRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function index(PropertyRepository $propertyRepository): Response
+    public function index(
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response
     {
+
+        $properties = $paginator->paginate(
+            $this->repository->findAll(),
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
+
         return $this->render('property/Admin/index.html.twig', [
-            'properties' => $propertyRepository->findAll()
+            'properties' => $properties
         ]);
     }
 
