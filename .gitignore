@@ -34,4 +34,5 @@ yarn-error.log
 ###> image files ###
 /public/media/properties/*
 !/public/images/empty.jpeg
+!/public/images/marker-icon.png
 ###< image files ###

@@ -11,9 +11,13 @@ import '../styles/main.scss'
 
 let $ = require('jquery');
 import 'select2';
-import "bootstrap/dist/js/bootstrap"
+import 'bootstrap/dist/js/bootstrap'
+import Places from 'places.js';
+import Map from './modules/map'
 
-$('select').select2();
+Map.init()
+
+$('#options').select2();
 
 let $contactButton = $('#contactButton');
 $contactButton.click(e => {
@@ -45,7 +49,26 @@ document.querySelectorAll('[data-delete]').forEach(a => {
   })
 })
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// var $ = require('jquery');
+let inputAddress = document.querySelector('#property_address')
+if (inputAddress !== null) {
+  let place = Places({
+    container: inputAddress
+  })
+  place.on('change', e => {
+    document.querySelector('#property_city').value = e.suggestion.city
+    document.querySelector('#property_postal_code').value = e.suggestion.postcode
+    document.querySelector('#property_lat').value = e.suggestion.latlng.lat
+    document.querySelector('#property_lng').value = e.suggestion.latlng.lng
+  })
+}
 
-// console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+let searchAddress = document.querySelector('#search_address')
+if (searchAddress !== null) {
+  let place = Places({
+    container: searchAddress
+  })
+  place.on('change', e => {
+    document.querySelector('#lat').value = e.suggestion.latlng.lat
+    document.querySelector('#lng').value = e.suggestion.latlng.lng
+  })
+}

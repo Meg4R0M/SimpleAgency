@@ -30,6 +30,26 @@ class PropertySearch
     private $options;
 
     /**
+     * @var integer|null
+     */
+    private $distance;
+
+    /**
+     * @var float|null
+     */
+    private $lat;
+
+    /**
+     * @var float|null
+     */
+    private $lng;
+
+    /**
+     * @var string|null
+     */
+    private $address;
+
+    /**
      * PropertySearch constructor.
      */
     public function __construct()
@@ -88,5 +108,79 @@ class PropertySearch
     {
         $this->options = $options;
     }
+
+    /**
+     * @return int
+     */
+    public function getDistance(): ?int
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param int $distance
+     * @return PropertySearch
+     */
+    public function setDistance(?int $distance): PropertySearch
+    {
+        $this->distance = $distance;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    /**
+     * @param float $lat
+     * @return PropertySearch
+     */
+    public function setLat(?float $lat): PropertySearch
+    {
+        $this->lat = $lat;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    /**
+     * @param float $lng
+     * @return PropertySearch
+     */
+    public function setLng(?float $lng): PropertySearch
+    {
+        $this->lng = $lng;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string|null $address
+     * @return PropertySearch
+     */
+    public function setAddress(?string $address): PropertySearch
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+
 
 }
