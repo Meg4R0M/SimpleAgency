@@ -22,7 +22,10 @@ class AdminOptionController extends AbstractController
      */
     public function index(OptionRepository $optionRepository): Response
     {
-        return $this->render('admin/option/index.html.twig', ['options' => $optionRepository->findAll()]);
+        return $this->render('admin/option/index.html.twig', [
+            'options' => $optionRepository->findAll(),
+            'current_admin_menu' => 'options'
+        ]);
     }
 
     /**
@@ -47,6 +50,7 @@ class AdminOptionController extends AbstractController
         return $this->render('admin/option/new.html.twig', [
             'option' => $option,
             'form' => $form->createView(),
+            'current_admin_menu' => 'options'
         ]);
     }
 
@@ -57,7 +61,10 @@ class AdminOptionController extends AbstractController
      */
     public function show(Option $option): Response
     {
-        return $this->render('admin/option/show.html.twig', ['option' => $option]);
+        return $this->render('admin/option/show.html.twig', [
+            'option' => $option,
+            'current_admin_menu' => 'options'
+        ]);
     }
 
     /**
@@ -80,6 +87,7 @@ class AdminOptionController extends AbstractController
         return $this->render('admin/option/edit.html.twig', [
             'option' => $option,
             'form' => $form->createView(),
+            'current_admin_menu' => 'options'
         ]);
     }
 

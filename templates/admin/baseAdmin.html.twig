@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block navAdmin %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ path('admin_property_index') }}">Administration</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link{% if current_admin_menu is defined and current_admin_menu == 'properties' %} active{% endif %}"
+           href="{{ path('admin_property_index') }}">Properties</a>
+        <a class="nav-item nav-link{% if current_admin_menu is defined and current_admin_menu == 'options' %} active{% endif %}"
+           href="{{ path('admin_option_index') }}">Options</a>
+      </div>
+    </div>
+  </nav>
+{% endblock %}

@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('admin_property_delete', {'id': property.id}) }}"
+<form method="post" action="{{ path('admin_property_delete', {'id': property.id}) }}" class="mt-1"
       onsubmit="return confirm('Are you sure you want to delete this item?');" style="display: inline-block;">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">

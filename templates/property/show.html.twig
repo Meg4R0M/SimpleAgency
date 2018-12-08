@@ -21,9 +21,38 @@
       <div class="row">
 
         <div class="col-md-8">
-          {% if property.filename %}
-            <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}"
-                 alt="{{ property.filename }}" class="card-img-top" style="width: 100%; height: auto;">
+          {% if property.pictures | length > 1 %}
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+              <!-- Indicators -->
+              <ul class="carousel-indicators">
+                {% for picture in property.pictures %}
+                  <li data-target="#demo" data-slide-to="{{ loop.index0 }}"{% if loop.index0 == 0 %} class="active"{% endif %}></li>
+                {% endfor %}
+              </ul>
+
+              <!-- The slideshow -->
+              <div class="carousel-inner">
+                {% for picture in property.pictures %}
+                  <div class="carousel-item{% if loop.index0 == 0 %} active{% endif %}">
+                    <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('medium') }}"
+                         alt="{{ picture.filename }}" class="card-img-top" style="width: 100%; height: auto;">
+                  </div>
+                {% endfor %}
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+
+            </div>
+          {% elseif property.picture %}
+            <img src="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('medium') }}"
+                 alt="{{ property.picture.filename }}" class="card-img-top" style="width: 100%; height: auto;">
           {% else %}
             <img src="{{ '/images/properties/empty.jpeg' | imagine_filter('medium') }}" alt="empty"
                  class="card-img-top" style="width: 100%; height: auto;">

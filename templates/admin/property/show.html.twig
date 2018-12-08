@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/baseAdmin.html.twig' %}
 
 {% block title 'Property' | trans %}
 
@@ -75,6 +75,6 @@
 
     <a href="{{ path('admin_property_edit', {'id': property.id}) }}" class="btn btn-secondary">{{ 'edit' | trans }}</a>
 
-    {{ include('property/Admin/_delete_form.html.twig') }}
+    {{ include('admin/property/_delete_form.html.twig') }}
   </div>
 {% endblock %}

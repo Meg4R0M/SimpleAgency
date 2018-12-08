@@ -17,6 +17,7 @@ class PropertyFixtures extends Fixture implements OrderedFixtureInterface
 
         for ($i = 0; $i < 100; $i++) {
             $property = new Property();
+            $files = [];
 
             $property->setAddress($faker->address)
                 ->setBedrooms($faker->numberBetween(1,9))
@@ -34,17 +35,20 @@ class PropertyFixtures extends Fixture implements OrderedFixtureInterface
                 $randomOption = $faker->numberBetween(1,3);
                 $property->addOption($this->getReference('option'.$randomOption));
             }
-            $getFileFromFaker = fopen($faker->unique()->imageUrl(640, 480, 'city'), 'r');
-            $temp = tempnam(sys_get_temp_dir(), 'TMP_');
-            file_put_contents($temp, stream_get_contents($getFileFromFaker));
-            $file = new UploadedFile(
-                $temp,
-                'Image'.$i,
-                null,
-                null,
-                null,
-                true);
-            $property->setImageFile($file);
+            for ($j = 0; $j < 3; $j++) {
+                $getFileFromFaker = fopen($faker->unique()->imageUrl(640, 480, 'city'), 'r');
+                $temp = tempnam(sys_get_temp_dir(), 'TMP_');
+                file_put_contents($temp, stream_get_contents($getFileFromFaker));
+                $files[] = new UploadedFile(
+                    $temp,
+                    'Image'.$i,
+                    null,
+                    null,
+                    null,
+                    true);
+            }
+            $property->setPictureFiles($files)
+            ->setUpdatedAt(new \DateTime('now'));
 
             $manager->persist($property);
         }

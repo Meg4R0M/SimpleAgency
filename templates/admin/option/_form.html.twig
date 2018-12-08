@@ -3,5 +3,6 @@
     <div class="col-md-6">{{ form_row(form.name) }}</div>
 </div>
 {{ form_widget(form) }}
-<button class="btn btn-primary">{{ button_label | default('Save') | trans }}</button>
+<button class="btn btn-primary">{{ button_label | default('Save') }}</button>
+<a href="{{ path('admin_option_index') }}" class="btn btn-secondary">{{ 'back to list' | trans }}</a>
 {{ form_end(form) }}

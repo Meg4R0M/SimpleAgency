@@ -46,11 +46,12 @@ class AdminPropertyController extends AbstractController
         $properties = $paginator->paginate(
             $this->repository->findAll(),
             $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            10/*limit per page*/
         );
 
-        return $this->render('property/Admin/index.html.twig', [
-            'properties' => $properties
+        return $this->render('admin/property/index.html.twig', [
+            'properties' => $properties,
+            'current_admin_menu' => 'properties'
         ]);
     }
 
@@ -74,9 +75,10 @@ class AdminPropertyController extends AbstractController
             return $this->redirectToRoute('admin_property_index');
         }
 
-        return $this->render('property/Admin/new.html.twig', [
+        return $this->render('admin/property/new.html.twig', [
             'property' => $property,
             'form' => $form->createView(),
+            'current_admin_menu' => 'properties'
         ]);
     }
 
@@ -87,7 +89,10 @@ class AdminPropertyController extends AbstractController
      */
     public function show(Property $property): Response
     {
-        return $this->render('property/Admin/show.html.twig', ['property' => $property]);
+        return $this->render('admin/property/show.html.twig', [
+            'property' => $property,
+            'current_admin_menu' => 'properties'
+        ]);
     }
 
     /**
@@ -107,9 +112,10 @@ class AdminPropertyController extends AbstractController
             return $this->redirectToRoute('admin_property_index', ['id' => $property->getId()]);
         }
 
-        return $this->render('property/Admin/edit.html.twig', [
+        return $this->render('admin/property/edit.html.twig', [
             'property' => $property,
             'form' => $form->createView(),
+            'current_admin_menu' => 'properties'
         ]);
     }
 

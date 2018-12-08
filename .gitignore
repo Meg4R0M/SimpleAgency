@@ -32,6 +32,6 @@ yarn-error.log
 ###< liip/imagine-bundle ###
 
 ###> image files ###
-/public/images/properties/*
-!/public/images/properties/empty.jpeg
+/public/media/properties/*
+!/public/images/empty.jpeg
 ###< image files ###
