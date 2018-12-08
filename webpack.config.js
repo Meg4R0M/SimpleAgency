@@ -17,6 +17,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
+    // .addStyleEntry('css/main', './assets/styles/main.scss')
     .addEntry('app', './assets/js/app.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
@@ -37,9 +38,22 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
+    .configureBabel(function(babelConfig) {
+      // add additional presets
+      // babelConfig.presets.push('@babel/preset-flow');
 
+      // no plugins are added by default, but you can add some
+      // babelConfig.plugins.push('styled-jsx/babel');
+    }, {
+      // node_modules is not processed through Babel by default
+      // but you can whitelist specific modules to process
+      // include_node_modules: ['foundation-sites']
+
+      // or completely control the exclude
+      // exclude: /bower_components/
+    })
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
