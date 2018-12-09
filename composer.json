@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "beberlei/DoctrineExtensions": "^1.1",
+        "google/recaptcha": "^1.2",
         "knplabs/knp-paginator-bundle": "^2.8",
         "liip/imagine-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.2",
@@ -51,7 +52,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Meg4R0M\\RecaptchaBundle\\": "lib/RecaptchaBundle"
         }
     },
     "autoload-dev": {

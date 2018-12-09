@@ -20,4 +20,5 @@ return [
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
+    \Meg4R0M\RecaptchaBundle\RecaptchaBundle::class=> ['all' => true]
 ];

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use Meg4R0M\RecaptchaBundle\Type\RecaptchaSubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,7 +21,13 @@ class ContactType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('phone', TextType::class)
             ->add('email', EmailType::class)
-            ->add('message', TextareaType::class);
+            ->add('message', TextareaType::class)
+            ->add('captcha', RecaptchaSubmitType::class, [
+                'label' => 'Send',
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ]);
         if ($type == 'test') {
             die();
         }
