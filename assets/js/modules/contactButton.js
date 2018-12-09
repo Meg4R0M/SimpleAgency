@@ -1,3 +1,5 @@
+let $ = require('jquery');
+
 export default class ContactButton {
 
   static init() {
