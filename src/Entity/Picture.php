@@ -29,7 +29,10 @@ class Picture
      * @var File|null
      * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
      * @Assert\Image(
-     *     mimeTypes="image/jpeg"
+     *   maxSize="1000k",
+     *   maxSizeMessage="Le fichier excède 1000Ko.",
+     *   mimeTypes={"image/png", "image/jpeg", "image/jpg", "image/gif"},
+     *   mimeTypesMessage= "formats autorisés: png, jpeg, jpg, gif"
      * )
      */
     private $imageFile;

@@ -10,7 +10,6 @@ use App\Form\ContactType;
 use App\Form\PropertySearchType;
 use App\Repository\PropertyRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,31 +35,25 @@ class PropertyController extends AbstractController
     }
 
     /**
-     * @Route("/biens", name="property.index")
-     * @param PaginatorInterface $paginator
+     * @Route("/biens", name="property_index")
      * @param Request $request
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request): Response
+    public function index(Request $request): Response
     {
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $search);
         $form->handleRequest($request);
 
-        $properties = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
-            $request->query->getInt('page', 1)/*page number*/,
-            12/*limit per page*/
-            );
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',
-            'properties'   => $properties,
+            'properties'   => $this->repository->paginateAllVisible($search, $request->query->getInt('page', 1)),
             'form'         => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/biens/{slug}-{id}", name="property_show", requirements={"slug": "[a-z0-9\-]*"})
      * @param Property $property
      * @param string $slug
      * @param Request $request
@@ -70,7 +63,7 @@ class PropertyController extends AbstractController
     public function show(Property $property, string $slug, Request $request, ContactNotification $notification): Response
     {
         if ($property->getSlug() !== $slug) {
-            return $this->redirectToRoute('property.show', [
+            return $this->redirectToRoute('property_show', [
                 'id'   => $property->getId(),
                 'slug' => $property->getSlug()
             ], 301);
@@ -84,7 +77,7 @@ class PropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $notification->notify($contact);
             $this->addFlash('success', 'Votre email a bien été envoyé');
-            return $this->redirectToRoute('property.show', [
+            return $this->redirectToRoute('property_show', [
                 'id'   => $property->getId(),
                 'slug' => $property->getSlug()
             ]);

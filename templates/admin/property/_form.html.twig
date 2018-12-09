@@ -10,13 +10,15 @@
   <div class="col-md-4">
     <div class="row flex">
       {% for picture in property.pictures %}
-        <div class="col" style="width: 100px; flex: none; margin: 5px;">
-          <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('thumb') }}" width="100" alt="">
-          <a href="{{ path('admin_picture_delete', {'id': picture.id}) }}"
-             class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}">
-            {{ 'Delete' | trans }}
-          </a>
-        </div>
+        {% if picture.id is not null %}
+          <div class="col" style="width: 100px; flex: none; margin: 5px;">
+            <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('thumb') }}" width="100" alt="">
+            <a href="{{ path('admin_picture_delete', {'id': picture.id}) }}"
+               class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}">
+              {{ 'Delete' | trans }}
+            </a>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
