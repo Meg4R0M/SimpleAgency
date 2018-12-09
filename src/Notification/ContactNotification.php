@@ -8,7 +8,6 @@
 
 namespace App\Notification;
 
-
 use App\Entity\Contact;
 use Twig\Environment;
 
@@ -41,7 +40,5 @@ class ContactNotification
                 'contact' => $contact
             ]), 'text/html');
         $this->mailer->send($message);
-
     }
-
 }

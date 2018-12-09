@@ -39,6 +39,5 @@ class AdminPictureController extends AbstractController
         }
 
         return new JsonResponse(['error' => "Token invalide"], 400);
-
     }
 }

@@ -423,7 +423,7 @@ class Property
      */
     public function setPictureFiles($pictureFiles): self
     {
-        foreach($pictureFiles as $pictureFile) {
+        foreach ($pictureFiles as $pictureFile) {
             $picture = new Picture();
             $picture->setImageFile($pictureFile);
             $this->addPicture($picture);
@@ -455,6 +455,4 @@ class Property
 
         return $this;
     }
-
-
 }

@@ -33,8 +33,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         RouterInterface $router,
         CsrfTokenManagerInterface $csrfTokenManager,
         UserPasswordEncoderInterface $passwordEncoder
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->router = $router;
         $this->csrfTokenManager = $csrfTokenManager;
@@ -71,8 +70,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         $user = $this->entityManager->getRepository(User::class)
             ->findOneBy(['username' => $credentials['username']]);
+        $validUser = $userProvider->loadUserByUsername($credentials['username']);
 
-        if (!$user) {
+        if (!$user && !$validUser) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
@@ -87,11 +87,18 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+
+        $userRoles = $token->getRoles();
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->router->generate('admin_property_index'));
+        if (in_array('ROLE_ADMIN', $userRoles)) {
+            return new RedirectResponse($this->router->generate('admin_property_index'));
+        }
+
+        return new RedirectResponse($this->router->generate('home'));
     }
 
     protected function getLoginUrl()

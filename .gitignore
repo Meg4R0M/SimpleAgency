@@ -36,3 +36,8 @@ yarn-error.log
 !/public/images/empty.jpeg
 !/public/images/marker-icon.png
 ###< image files ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###

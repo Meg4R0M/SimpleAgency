@@ -180,7 +180,4 @@ class PropertySearch
         $this->address = $address;
         return $this;
     }
-
-
-
 }

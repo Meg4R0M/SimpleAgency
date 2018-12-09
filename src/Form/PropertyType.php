@@ -16,6 +16,7 @@ class PropertyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $type = $options['action_name'];
         $builder
             ->add('title')
             ->add('description')
@@ -41,9 +42,10 @@ class PropertyType extends AbstractType
             ->add('address')
             ->add('postal_code')
             ->add('lat', HiddenType::class)
-            ->add('lng', HiddenType::class)
-            ->add('sold')
-        ;
+            ->add('lng', HiddenType::class);
+        if ($type == 'edit') {
+            $builder->add('sold');
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

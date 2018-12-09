@@ -60,8 +60,12 @@ class PropertyController extends AbstractController
      * @param ContactNotification $notification
      * @return Response
      */
-    public function show(Property $property, string $slug, Request $request, ContactNotification $notification): Response
-    {
+    public function show(
+        Property $property,
+        string $slug,
+        Request $request,
+        ContactNotification $notification
+    ): Response {
         if ($property->getSlug() !== $slug) {
             return $this->redirectToRoute('property_show', [
                 'id'   => $property->getId(),

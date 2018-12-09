@@ -16,6 +16,7 @@ class PropertySearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $type = $options['action_name'];
         $builder
             ->add('maxPrice', IntegerType::class, [
                 'required' => false,
@@ -58,6 +59,9 @@ class PropertySearchType extends AbstractType
             ])
             ->add('lat', HiddenType::class)
             ->add('lng', HiddenType::class);
+        if ($type == 'delete') {
+            die();
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

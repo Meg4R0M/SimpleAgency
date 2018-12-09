@@ -53,7 +53,10 @@ class PropertyRepository extends ServiceEntityRepository
 
         if ($search->getLat() && $search->getLng() && $search->getDistance()) {
             $query = $query
-                ->andWhere('(6353 * 2 * ASIN(SQRT( POWER(SIN((p.lat - :lat) *  pi()/180 / 2), 2) +COS(p.lat * pi()/180) * COS(:lat * pi()/180) * POWER(SIN((p.lng - :lng) * pi()/180 / 2), 2) ))) <= :distance')
+                ->andWhere('
+                (6353 * 2 * ASIN(SQRT( POWER(SIN((p.lat - :lat) *  pi()/180 / 2), 2)
+                 +COS(p.lat * pi()/180) * COS(:lat * pi()/180) * POWER(SIN((p.lng - :lng)
+                  * pi()/180 / 2), 2) ))) <= :distance')
                 ->setParameter('lng', $search->getLng())
                 ->setParameter('lat', $search->getLat())
                 ->setParameter('distance', $search->getDistance());
@@ -103,17 +106,17 @@ class PropertyRepository extends ServiceEntityRepository
             ->where('p.sold = false');
     }
 
-    private function hydratePicture($properties) {
+    private function hydratePicture($properties)
+    {
         if (method_exists($properties, 'getItems')) {
             $properties = $properties->getItems();
         }
         $pictures = $this->getEntityManager()->getRepository(Picture::class)->findForProperties($properties);
-        foreach($properties as $property) {
+        foreach ($properties as $property) {
             /** @var $property Property */
-            if($pictures->containsKey($property->getId())) {
+            if ($pictures->containsKey($property->getId())) {
                 $property->setPicture($pictures->get($property->getId()));
             }
         }
     }
-
 }

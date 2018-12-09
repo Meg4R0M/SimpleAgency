@@ -11,9 +11,13 @@ class OptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $type = $options['action_name'];
         $builder
             ->add('name')
         ;
+        if ($type == 'test') {
+            die();
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

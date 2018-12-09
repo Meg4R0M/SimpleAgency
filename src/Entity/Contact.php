@@ -161,6 +161,4 @@ class Contact
         $this->property = $property;
         return $this;
     }
-
-
 }

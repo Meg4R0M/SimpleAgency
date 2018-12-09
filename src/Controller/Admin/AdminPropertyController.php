@@ -40,8 +40,7 @@ class AdminPropertyController extends AbstractController
     public function index(
         PaginatorInterface $paginator,
         Request $request
-    ): Response
-    {
+    ): Response {
 
         $properties = $paginator->paginate(
             $this->repository->findAll(),
