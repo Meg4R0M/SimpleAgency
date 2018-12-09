@@ -18,6 +18,7 @@
     <file>tests/</file>
 
     <exclude-pattern>*/Migrations/*</exclude-pattern>
+    <exclude-pattern>*/assets/*</exclude-pattern>
     <exclude-pattern>*/config/bootstrap.php</exclude-pattern>
     <exclude-pattern>*/public/index.php</exclude-pattern>
 

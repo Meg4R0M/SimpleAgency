@@ -36,6 +36,9 @@
   <div class="col-md-2">{{ form_row(form.postal_code) }}</div>
   <div class="col-md-1">{{ form_row(form.sold) }}</div>
 </div>
+<div class="row">
+  <div class="col-md-12">{{ form_row(form.options) }}</div>
+</div>
 {{ form_rest(form) }}
 <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 <a href="{{ path('admin_property_index') }}" class="btn btn-secondary">{{ 'back to list' | trans }}</a>
